@@ -12,6 +12,7 @@ import PrivacyPolicy from "./pages/PrivacyPolicy";
 import { useAppContext } from "./contexts/AppContext";
 import AddHotel from "./pages/AddHotel";
 import MyHotels from "./pages/My-Hotels";
+import EditHotel from "./pages/EditHotel";
 
 
 const App = () => {
@@ -61,6 +62,13 @@ const App = () => {
         <Route path ="/my-hotels" element = {
             <Layout>
               <MyHotels />
+            </Layout>
+          }
+          />
+
+<Route path ="/edit-hotel/:hotelId" element = {
+            <Layout>
+              <EditHotel />
             </Layout>
           }
           />
