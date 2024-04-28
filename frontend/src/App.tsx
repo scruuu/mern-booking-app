@@ -11,6 +11,7 @@ import TermsOfService from "./pages/TermsOfService";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import { useAppContext } from "./contexts/AppContext";
 import AddHotel from "./pages/AddHotel";
+import MyHotels from "./pages/My-Hotels";
 
 
 const App = () => {
@@ -56,7 +57,17 @@ const App = () => {
             </Layout>
           }
           />
-        </>}
+
+        <Route path ="/my-hotels" element = {
+            <Layout>
+              <MyHotels />
+            </Layout>
+          }
+          />
+        </>
+        
+        }
+
 
         <Route path="*" element={<Navigate to="/" />} />
 

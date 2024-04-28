@@ -1,9 +1,10 @@
 import express, {Request, Response} from "express";
 import multer from 'multer';
 import cloudinary from 'cloudinary';
-import Hotel, { HotelType } from "../models/hotels";
+import Hotel from "../models/hotels";
 import verifyToken from "../middleware/auth";
 import { body } from "express-validator";
+import { HotelType } from "../shared/types";
 
 const router = express.Router();
 
@@ -61,5 +62,15 @@ verifyToken,
         res.status(500).json({message: "Something went wrong"});
     }
 });
+
+router.get("/", verifyToken, async(req:Request, res: Response)=>{
+    
+    try{
+        const hotels = await Hotel.find({userId: req.userId});
+        res.json(hotels);
+    } catch(error){
+        res.status(500).json({message: "Error fetching hotels"});
+    }
+})
 
 export default router;
