@@ -209,6 +209,17 @@ export const updateMyHotelById = async (hotelFormData: FormData) => {
     return await response.json();
   };
   
+  export const fetchMyBookings = async (): Promise<HotelType[]> => {
+    const response = await fetch(`${API_BASE_URL}/api/my-bookings`, {
+      credentials: "include",
+    });
+  
+    if (!response.ok) {
+      throw new Error("Unable to fetch bookings");
+    }
+  
+    return response.json();
+  };
 
   
   export const createRoomBooking = async (formData: BookingFormData) => {
