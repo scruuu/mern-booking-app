@@ -199,6 +199,19 @@ export const updateMyHotelById = async (hotelFormData: FormData) => {
     hotelId: string,
     numberOfNights: string
   ): Promise<PaymentIntentResponse> => {
+    const billingDetails = {
+      address: {
+        line1: "abcd apts",
+        line2: "1 floor",
+        city: "dehradun",
+        country: "USA", // Assuming India
+        postal_code: "123456", // Update with the correct postal code
+      },
+      email: "example@example.com", // Update with the customer's email
+      name: "John Doe", // Update with the customer's name
+      phone: "+1234567890", // Update with the customer's phone number
+    };
+  
     const response = await fetch(
       `${API_BASE_URL}/api/hotels/${hotelId}/bookings/payment-intent`,
       {
@@ -206,7 +219,8 @@ export const updateMyHotelById = async (hotelFormData: FormData) => {
         method: "POST",
         body: JSON.stringify({
           numberOfNights,
-          description: "Booking payment for hotel reservation", // Add description here
+          description: "Booking payment for hotel reservation",
+          billingDetails,
         }),
         headers: {
           "Content-Type": "application/json",
